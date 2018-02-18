@@ -1,5 +1,3 @@
-Python example for interacting with adressaparken
-
 # Setup
 - Install python 3 https://www.python.org/downloads/
 - Run `pip3 install bottle soundfile numpy sounddevice` to install requirements for example code
