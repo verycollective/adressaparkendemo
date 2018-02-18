@@ -11,7 +11,11 @@ def menu():
 @route('/sound/<speaker>')
 def sound(speaker):
     data, fs = sf.read('bell.wav', dtype='float32')
-    sd.default.device = 'Built-in Output' # To see available sound devices, use python3 -m sounddevice
+
+    # To see available sound devices, use python3 -m sounddevice
+    sd.default.device = '24Ao' 
+    #sd.default.device = 'Built-in Output' # OS x default
+    
     mono = [(sample[0]+sample[1])/2 for sample in data]; #convert to mono
     #todo mapping with hexagonal speaker setup on MAC1
     speaker = int(speaker)
