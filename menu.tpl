@@ -8,16 +8,18 @@
 <button onmousedown="httpGetAsync('sound/4')" href="#">Sound speaker 4</button>
 <button onmousedown="httpGetAsync('sound/5')" href="#">Sound speaker 5</button>
 <button onmousedown="httpGetAsync('sound/6')" href="#">Sound speaker 6</button>
-<button onmousedown="httpGetAsync('light/1')" href="#">LED 1</button>
-<button onmousedown="httpGetAsync('light/11')" href="#">LED 11</button>
-<button onmousedown="httpGetAsync('light/21')" href="#">LED 21</button>
-<button onmousedown="httpGetAsync('light/31')" href="#">LED 31</button>
-<button onmousedown="httpGetAsync('light/41')" href="#">LED 41</button>
-<button onmousedown="httpGetAsync('light/51')" href="#">LED 51</button>
-<button onmousedown="httpGetAsync('light/61')" href="#">LED 61</button>
-<button onmousedown="httpGetAsync('light/71')" href="#">LED 71</button>
-<button onmousedown="httpGetAsync('light/81')" href="#">LED 81</button>
-<button onmousedown="httpGetAsync('light/91')" href="#">LED 91</button>
+<button onmousedown="httpGetAsync('lightrandom/1')" href="#">LED 1</button>
+<button onmousedown="httpGetAsync('lightrandom/11')" href="#">LED 11</button>
+<button onmousedown="httpGetAsync('lightrandom/21')" href="#">LED 21</button>
+<button onmousedown="httpGetAsync('lightrandom/31')" href="#">LED 31</button>
+<button onmousedown="httpGetAsync('lightrandom/41')" href="#">LED 41</button>
+<button onmousedown="httpGetAsync('lightrandom/51')" href="#">LED 51</button>
+<button onmousedown="httpGetAsync('lightrandom/61')" href="#">LED 61</button>
+<button onmousedown="httpGetAsync('lightrandom/71')" href="#">LED 71</button>
+<button onmousedown="httpGetAsync('lightrandom/81')" href="#">LED 81</button>
+<button onmousedown="httpGetAsync('lightrandom/91')" href="#">LED 91</button>
+<button onmousedown="httpGetAsync('lightallblue')" href="#">LED all blue</button>
+<button onmousedown="httpGetAsync('lightallrandom')" href="#">LED all random</button>
 
 
 <style>
