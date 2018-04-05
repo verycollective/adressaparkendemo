@@ -18,9 +18,9 @@ def sound(speaker):
     #sd.default.device = 'Built-in Output' # OS x default
 
     mono = [(sample[0]+sample[1])/2 for sample in data]; #convert to mono
-    #todo mapping with hexagonal speaker setup on MAC1
+
     speaker = int(speaker)
-    sd.play(mono, fs, mapping=[speaker])
+    sd.play(mono, fs, mapping=[speaker], blocking=False) # remove mapping argument to test on machines without fancy soundcard
     return "OK"
 
 @route('/lightrandom/<address>')
