@@ -13,7 +13,7 @@ def sound(speaker):
     data, fs = sf.read('bell.wav', dtype='float32')
 
     # To see available sound devices, use python3 -m sounddevice
-    sd.default.device = '24Ao' 
+    sd.default.device = '24Ao'
     #sd.default.device = 'Built-in Output' # OS x default
 
     mono = [(sample[0]+sample[1])/2 for sample in data]; #convert to mono
@@ -24,20 +24,23 @@ def sound(speaker):
 
 @route('/lightrandom/<address>')
 def lightrandom(address):
-    return lightsingle(address, randint(0, 255), randint(0, 255), randint(0, 255), randint(0, 255))
+    return lightsingle(address, randint(0, 255), randint(0, 255), randint(0, 255))
 
-@route('/lightallblue')
-def allblue():
-    lightsingle(1, 0, 0, 50, 5)
-    lightsingle(11, 0, 0, 50, 5)
-    lightsingle(21, 0, 0, 50, 5)
-    lightsingle(31, 0, 0, 50, 5)
-    lightsingle(41, 0, 0, 50, 5)
-    lightsingle(51, 0, 0, 50, 5)
-    lightsingle(61, 0, 0, 50, 5)
-    lightsingle(71, 0, 0, 50, 5)
-    lightsingle(81, 0, 0, 50, 5)
-    lightsingle(91, 0, 0, 50, 5)
+@route('/lightall/<sr>/<sg>/<sb>')
+def allblue(sr, sg, sb):
+    r = int(sr)
+    g = int(sg)
+    b = int(sb)
+    lightsingle(1, r, g, b)
+    lightsingle(11, r, g, b)
+    lightsingle(21, r, g, b)
+    lightsingle(31, r, g, b)
+    lightsingle(41, r, g, b)
+    lightsingle(51, r, g, b)
+    lightsingle(61, r, g, b)
+    lightsingle(71, r, g, b)
+    lightsingle(81, r, g, b)
+    lightsingle(91, r, g, b)
     return "OK"
 
 @route('/lightallrandom')
@@ -54,8 +57,8 @@ def allrandom():
     lightrandom(91)
     return "OK"
 
-@route('/lightsingle/<address>/<r>/<g>/<b>/<w>')
-def lightsingle(address, r, g, b, w):
+@route('/lightsingle/<address>/<r>/<g>/<b>')
+def lightsingle(address, r, g, b):
     artnet_subnet = 0
     artnet_net = 0
     artnet_universe = 0
@@ -64,9 +67,14 @@ def lightsingle(address, r, g, b, w):
     address = int(address) # 1 - 11 - 21 - 31- 41 - 51 - 61 - 71 - 81 - 91
     device = ArtNet_send.ArtNet_send(artnet_net, artnet_subnet, artnet_universe, ip, port)
     device.send_single_value(address, r)
+    device.send_single_value(address, r)
+    device.send_single_value(address, r)
     device.send_single_value(address+1, g)
-    device.send_single_value(address+2, b) 
-    device.send_single_value(address+3, w)
+    device.send_single_value(address+1, g)
+    device.send_single_value(address+1, g)
+    device.send_single_value(address+2, b)
+    device.send_single_value(address+2, b)
+    device.send_single_value(address+2, b)
     return "OK"
 
 @route('/video')
