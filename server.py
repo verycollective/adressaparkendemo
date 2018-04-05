@@ -3,6 +3,7 @@ import sounddevice as sd
 import soundfile as sf
 from lib import ArtNet_send
 from random import randint
+from lib.StupidArtnet import StupidArtnet
 
 @route('/')
 def menu():
@@ -59,22 +60,31 @@ def allrandom():
 
 @route('/lightsingle/<address>/<r>/<g>/<b>')
 def lightsingle(address, r, g, b):
-    artnet_subnet = 0
-    artnet_net = 0
-    artnet_universe = 0
-    ip = '192.168.1.10'
-    port = 6454
     address = int(address) # 1 - 11 - 21 - 31- 41 - 51 - 61 - 71 - 81 - 91
-    device = ArtNet_send.ArtNet_send(artnet_net, artnet_subnet, artnet_universe, ip, port)
-    device.send_single_value(address, r)
-    device.send_single_value(address, r)
-    device.send_single_value(address, r)
-    device.send_single_value(address+1, g)
-    device.send_single_value(address+1, g)
-    device.send_single_value(address+1, g)
-    device.send_single_value(address+2, b)
-    device.send_single_value(address+2, b)
-    device.send_single_value(address+2, b)
+
+    # THESE ARE MOST LIKELY THE VALUES YOU WILL BE NEEDING
+ #   target_ip = '127.0.0.1'
+    target_ip = '192.168.1.4'     # localhost for testing, typically in 2.x or 10.x range
+    universe = 0                # see docs
+    packet_size = 512           # it is not necessary to send whole universe
+
+    # CREATING A STUPID ARTNET OBJECT
+    a = StupidArtnet()
+
+    # SETUP NEEDS FEW SKIPPABLE ELEMENTS
+    # TARGET_IP   = DEFAULT 127.0.0.1
+    # UNIVERSE    = DEFAULT 0
+    # PACKET_SIZE = DEFAULT 512
+    a.setup(target_ip, universe)
+
+    # SET THE ARTNET BUFFER TO OUR DATA ...
+    a.set_rgb(address, r, g, b)
+
+    # ... AND SEND
+    a.show()
+    a.show()
+    a.show()
+
     return "OK"
 
 @route('/video')
