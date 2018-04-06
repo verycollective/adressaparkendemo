@@ -1,7 +1,6 @@
 from bottle import route, run, template
 import sounddevice as sd
 import soundfile as sf
-from lib import ArtNet_send
 from random import randint
 from lib.StupidArtnet import StupidArtnet
 
@@ -32,57 +31,42 @@ def allblue(sr, sg, sb):
     r = int(sr)
     g = int(sg)
     b = int(sb)
-    lightsingle(1, r, g, b)
-    lightsingle(11, r, g, b)
-    lightsingle(21, r, g, b)
-    lightsingle(31, r, g, b)
-    lightsingle(41, r, g, b)
-    lightsingle(51, r, g, b)
-    lightsingle(61, r, g, b)
-    lightsingle(71, r, g, b)
-    lightsingle(81, r, g, b)
-    lightsingle(91, r, g, b)
+    a.set_rgb(1, r, g, b)
+    a.set_rgb(11, r, g, b)
+    a.set_rgb(21, r, g, b)
+    a.set_rgb(31, r, g, b)
+    a.set_rgb(41, r, g, b)
+    a.set_rgb(51, r, g, b)
+    a.set_rgb(61, r, g, b)
+    a.set_rgb(71, r, g, b)
+    a.set_rgb(81, r, g, b)
+    a.set_rgb(91, r, g, b)
+    a.show()
     return "OK"
 
 @route('/lightallrandom')
 def allrandom():
-    lightrandom(1)
-    lightrandom(11)
-    lightrandom(21)
-    lightrandom(31)
-    lightrandom(41)
-    lightrandom(51)
-    lightrandom(61)
-    lightrandom(71)
-    lightrandom(81)
-    lightrandom(91)
+    a.set_rgb(1,  randint(0, 255), randint(0, 255), randint(0, 255))
+    a.set_rgb(11, randint(0, 255), randint(0, 255), randint(0, 255))
+    a.set_rgb(21, randint(0, 255), randint(0, 255), randint(0, 255))
+    a.set_rgb(31, randint(0, 255), randint(0, 255), randint(0, 255))
+    a.set_rgb(41, randint(0, 255), randint(0, 255), randint(0, 255))
+    a.set_rgb(51, randint(0, 255), randint(0, 255), randint(0, 255))
+    a.set_rgb(61, randint(0, 255), randint(0, 255), randint(0, 255))
+    a.set_rgb(71, randint(0, 255), randint(0, 255), randint(0, 255))
+    a.set_rgb(81, randint(0, 255), randint(0, 255), randint(0, 255))
+    a.set_rgb(91, randint(0, 255), randint(0, 255), randint(0, 255))
+    a.show()
     return "OK"
 
 @route('/lightsingle/<address>/<r>/<g>/<b>')
 def lightsingle(address, r, g, b):
     address = int(address) # 1 - 11 - 21 - 31- 41 - 51 - 61 - 71 - 81 - 91
 
-    # THESE ARE MOST LIKELY THE VALUES YOU WILL BE NEEDING
- #   target_ip = '127.0.0.1'
-    target_ip = '192.168.1.4'     # localhost for testing, typically in 2.x or 10.x range
-    universe = 0                # see docs
-    packet_size = 512           # it is not necessary to send whole universe
-
-    # CREATING A STUPID ARTNET OBJECT
-    a = StupidArtnet()
-
-    # SETUP NEEDS FEW SKIPPABLE ELEMENTS
-    # TARGET_IP   = DEFAULT 127.0.0.1
-    # UNIVERSE    = DEFAULT 0
-    # PACKET_SIZE = DEFAULT 512
-    a.setup(target_ip, universe)
-
     # SET THE ARTNET BUFFER TO OUR DATA ...
     a.set_rgb(address, r, g, b)
 
     # ... AND SEND
-    a.show()
-    a.show()
     a.show()
 
     return "OK"
@@ -91,5 +75,21 @@ def lightsingle(address, r, g, b):
 def video():
     #todo show small video clip with hippo server
     return "OK"
+
+
+# VALUES SET FOR THE ADRESSAPARKEN FIXED INSTALL
+target_ip = '192.168.1.10'  # typically in 2.x or 10.x range
+universe = 0                # see docs
+packet_size = 100           # it is not necessary to send whole universe
+
+# CREATING A STUPID ARTNET OBJECT
+a = StupidArtnet()
+
+# SETUP NEEDS FEW SKIPPABLE ELEMENTS, WE DEFINED ABOVE
+# TARGET_IP   = DEFAULT 127.0.0.1
+# UNIVERSE    = DEFAULT 0
+# PACKET_SIZE = DEFAULT 512
+a.setup(target_ip, universe, packet_size)
+print(a)
 
 run(host='0.0.0.0', port=8080)
