@@ -8,3 +8,4 @@ By default is the MOTU soundcard (192.168.2.21) is connected to MAC1 by USB and 
 Sound lib docs: http://python-sounddevice.readthedocs.io/en/0.3.10/index.html
 
 Tool for using your server outside the local network: https://localtunnel.github.io/www/
+Alternative tunnel command: ssh -N -R 1337:localhost:8080 username@192.168.1.1
