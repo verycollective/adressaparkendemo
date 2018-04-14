@@ -41,7 +41,6 @@ def allblue(sr, sg, sb):
     a.set_rgb(71, r, g, b)
     a.set_rgb(81, r, g, b)
     a.set_rgb(91, r, g, b)
-    a.show()
     return "OK"
 
 @route('/lightallrandom')
@@ -56,7 +55,6 @@ def allrandom():
     a.set_rgb(71, randint(0, 255), randint(0, 255), randint(0, 255))
     a.set_rgb(81, randint(0, 255), randint(0, 255), randint(0, 255))
     a.set_rgb(91, randint(0, 255), randint(0, 255), randint(0, 255))
-    a.show()
     return "OK"
 
 @route('/lightsingle/<address>/<r>/<g>/<b>')
@@ -65,10 +63,6 @@ def lightsingle(address, r, g, b):
 
     # SET THE ARTNET BUFFER TO OUR DATA ...
     a.set_rgb(address, r, g, b)
-
-    # ... AND SEND
-    a.show()
-
     return "OK"
 
 @route('/video')
@@ -78,18 +72,21 @@ def video():
 
 
 # VALUES SET FOR THE ADRESSAPARKEN FIXED INSTALL
-target_ip = '192.168.1.10'  # typically in 2.x or 10.x range
-universe = 0                # see docs
+target_ip = '192.168.2.3'  # typically in 2.x or 10.x range
 packet_size = 100           # it is not necessary to send whole universe
+universe = 0
 
 # CREATING A STUPID ARTNET OBJECT
-a = StupidArtnet()
-
-# SETUP NEEDS FEW SKIPPABLE ELEMENTS, WE DEFINED ABOVE
 # TARGET_IP   = DEFAULT 127.0.0.1
 # UNIVERSE    = DEFAULT 0
 # PACKET_SIZE = DEFAULT 512
-a.setup(target_ip, universe, packet_size)
+# FRAME_RATE  = DEFAULT 30
+a = StupidArtnet(target_ip, universe, packet_size)
+
+# SEE IF EVERYTHING IS OK
 print(a)
+
+# START ARTNET THREAD
+a.start()
 
 run(host='0.0.0.0', port=8080)
