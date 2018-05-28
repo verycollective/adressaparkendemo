@@ -72,7 +72,7 @@ def video():
 
 
 # VALUES SET FOR THE ADRESSAPARKEN FIXED INSTALL
-target_ip = '192.168.2.3'  # typically in 2.x or 10.x range
+target_ip = '192.168.1.10'  # typically in 2.x or 10.x range
 packet_size = 100           # it is not necessary to send whole universe
 universe = 0
 
