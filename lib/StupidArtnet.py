@@ -35,6 +35,7 @@ class StupidArtnet():
 
 		# UDP SOCKET
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+		self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 		# Timer
 		self.fps = fps
