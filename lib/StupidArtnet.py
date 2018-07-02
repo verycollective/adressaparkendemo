@@ -35,12 +35,15 @@ class StupidArtnet():
 
 		# UDP SOCKET
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-		self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 		# Timer
 		self.fps = fps
 
 		self.make_header()
+
+	def __del__(self):
+		self.stop()
+		self.close()
 
 	def __str__(self):
 		"""Printable object state."""

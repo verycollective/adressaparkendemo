@@ -53,4 +53,3 @@ class ArtNet_send(): # Class to make an Artnet-Packet
 
     def close(self):
         self.s.close()
-
