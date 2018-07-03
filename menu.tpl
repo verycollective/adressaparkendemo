@@ -53,15 +53,23 @@
         width: 25%;
         color: #666;
     }
+
     .tabs {
       width: 100%;
       margin: auto;
       text-align: center;
+      position: fixed;
+      bottom: 0px;
+      padding-bottom: 10px;
     }
-    .tabcontent {
+
+    .container > .tabcontent {
       display: none;
       padding: 20px;
       text-align: center;
+      height: 100%;
+      width: 100%;
+      margin-bottom: 30px;
     }
 
     #light, #light > * {
@@ -87,41 +95,34 @@
     }
 
     .container{
-      height: 80vh;
+      overflow: scroll;
       display: flex;
       flex-flow: row wrap;
       justify-content: flex-end;
       align-items: center;
     }
+
     .container > * {
       margin: auto;
     }
 
-    .container > .tabcontent {
-      height: 100%;
-      width: 100%;
-    }
-
     .tabcontent > button {
-      width: 150px;
+      width: 120px;
       height: 45px;
       margin: 5px 5px;
       border: .5px solid white;
       border-radius: 2px;
     }
+
     .tabcontent > button:active {
       color: #FFF;
       border-top-width: 6px;
       border-bottom-width: 6px;
-      animation: .1s;
+      -webkit-transition: .1s;
+      transition: .1s ease 0s;
     }
 
     *:focus { outline:0 !important; }
-
-    .tabs {
-      position: fixed;
-      bottom: 10px;
-    }
     /*  -------------------------------------------------------
       :: Mobile Specific Styling
       -------------------------------------------------------*/
