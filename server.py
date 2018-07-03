@@ -60,6 +60,11 @@ def allrandom():
 	a.set_rgb(91, randint(0, 255), randint(0, 255), randint(0, 255))
 	return "OK"
 
+@route('/blackout')
+def blackout():
+	a.blackout();
+	return "OK"
+
 @route('/lightsingle/<address>/<r>/<g>/<b>')
 def lightsingle(address, r, g, b):
 	address = int(address) # 1 - 11 - 21 - 31- 41 - 51 - 61 - 71 - 81 - 91
@@ -73,7 +78,7 @@ def video():
 	#todo show small video clip with hippo server
 	return "OK"
 
-def signal_handler(*args):
+def signal_handler(signal, frame):
 	"""Quit gracefully."""
 	print("here")
 	try:
@@ -106,5 +111,6 @@ a.start()
 
 # add signal handler for SIGINT
 signal.signal(signal.SIGINT, signal_handler)
+
 
 run(host='0.0.0.0', port=8080)
