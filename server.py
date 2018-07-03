@@ -60,9 +60,9 @@ def allrandom():
 	a.set_rgb(91, randint(0, 255), randint(0, 255), randint(0, 255))
 	return "OK"
 
-@route('/blackout')
+@route('/lightblackout')
 def blackout():
-	a.blackout();
+	a.blackout()
 	return "OK"
 
 @route('/lightsingle/<address>/<r>/<g>/<b>')
@@ -90,9 +90,7 @@ def signal_handler(signal, frame):
 
 
 # VALUES SET FOR THE ADRESSAPARKEN FIXED INSTALL
-target_ip = '127.0.0.1'  # typically in 2.x or 10.x range
-
-# target_ip = '192.168.1.10'  # typically in 2.x or 10.x range
+target_ip = '192.168.1.10'  # typically in 2.x or 10.x range
 packet_size = 100           # it is not necessary to send whole universe
 universe = 0
 
