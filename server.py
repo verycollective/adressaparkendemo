@@ -3,8 +3,6 @@ import sounddevice as sd
 import soundfile as sf
 from random import randint
 from lib.StupidArtnet import StupidArtnet
-import signal
-import sys
 
 
 @route('/')
@@ -75,19 +73,8 @@ def lightsingle(address, r, g, b):
 
 @route('/video')
 def video():
-	#todo show small video clip with hippo server
+	# todo show small video clip with hippo server
 	return "OK"
-
-def signal_handler(signal, frame):
-	"""Quit gracefully."""
-	print("here")
-	try:
-		a.stop()
-		a.close()
-	except Exception as e:
-		print("ERROR: {}".format(e))
-	sys.exit(0)
-
 
 # VALUES SET FOR THE ADRESSAPARKEN FIXED INSTALL
 target_ip = '192.168.1.10'  # typically in 2.x or 10.x range
@@ -107,8 +94,8 @@ print(a)
 # START ARTNET THREAD
 a.start()
 
-# add signal handler for SIGINT
-signal.signal(signal.SIGINT, signal_handler)
-
-
-run(host='0.0.0.0', port=8080)
+try:
+	run(host='0.0.0.0', port=8080)
+finally:
+	print("Quitting")
+	del a
