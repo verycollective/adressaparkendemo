@@ -126,6 +126,7 @@ class StupidArtnet():
 		"""Starts thread clock."""
 		self.show()
 		self.__clock = Timer((1000.0 / self.fps) / 1000.0, self.start)
+		self.__clock.daemon = True
 		self.__clock.start()
 
 	def stop(self):
