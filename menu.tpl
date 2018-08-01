@@ -152,15 +152,15 @@
   <div class="container">
     <div id="light" class="tabcontent">
       <button onmousedown="httpGetAsync('lightrandom/1')">LED 1</button>
-      <button onmousedown="httpGetAsync('lightrandom/11')">LED 11</button>
-      <button onmousedown="httpGetAsync('lightrandom/21')">LED 21</button>
-      <button onmousedown="httpGetAsync('lightrandom/31')">LED 31</button>
-      <button onmousedown="httpGetAsync('lightrandom/41')">LED 41</button>
-      <button onmousedown="httpGetAsync('lightrandom/51')">LED 51</button>
-      <button onmousedown="httpGetAsync('lightrandom/61')">LED 61</button>
-      <button onmousedown="httpGetAsync('lightrandom/71')">LED 71</button>
-      <button onmousedown="httpGetAsync('lightrandom/81')">LED 81</button>
-      <button onmousedown="httpGetAsync('lightrandom/91')">LED 91</button>
+      <button onmousedown="httpGetAsync('lightrandom/4')">LED 2</button>
+      <button onmousedown="httpGetAsync('lightrandom/7')">LED 3</button>
+      <button onmousedown="httpGetAsync('lightrandom/10')">LED 4</button>
+      <button onmousedown="httpGetAsync('lightrandom/13')">LED 5</button>
+      <button onmousedown="httpGetAsync('lightrandom/16')">LED 6</button>
+      <button onmousedown="httpGetAsync('lightrandom/19')">LED 7</button>
+      <button onmousedown="httpGetAsync('lightrandom/22')">LED 8</button>
+      <button onmousedown="httpGetAsync('lightrandom/25')">LED 9</button>
+      <button onmousedown="httpGetAsync('lightrandom/28')">LED 10</button>
       <button onmousedown="httpGetAsync('lightall/0/0/40')">LED all blue</button>
       <button onmousedown="httpGetAsync('lightall/255/255/255')">LED all white</button>
       <button onmousedown="httpGetAsync('lightallrandom')">LED all random</button>

@@ -36,41 +36,28 @@ def lightrandom(address):
 @route('/lightall/<sr>/<sg>/<sb>')
 def allblue(sr, sg, sb):
 	"""Set all lights to blue."""
+	global a
 	r = int(sr)
 	g = int(sg)
 	b = int(sb)
-	a.set_rgb(1, r, g, b)
-	a.set_rgb(11, r, g, b)
-	a.set_rgb(21, r, g, b)
-	a.set_rgb(31, r, g, b)
-	a.set_rgb(41, r, g, b)
-	a.set_rgb(51, r, g, b)
-	a.set_rgb(61, r, g, b)
-	a.set_rgb(71, r, g, b)
-	a.set_rgb(81, r, g, b)
-	a.set_rgb(91, r, g, b)
+	for ad in dmx_adresses:
+		a.set_rgb(ad, r, g, b)
 	return "OK"
 
 
 @route('/lightallrandom')
 def allrandom():
 	"""Set all lights to random colours."""
-	a.set_rgb(1,  randint(0, 255), randint(0, 255), randint(0, 255))
-	a.set_rgb(11, randint(0, 255), randint(0, 255), randint(0, 255))
-	a.set_rgb(21, randint(0, 255), randint(0, 255), randint(0, 255))
-	a.set_rgb(31, randint(0, 255), randint(0, 255), randint(0, 255))
-	a.set_rgb(41, randint(0, 255), randint(0, 255), randint(0, 255))
-	a.set_rgb(51, randint(0, 255), randint(0, 255), randint(0, 255))
-	a.set_rgb(61, randint(0, 255), randint(0, 255), randint(0, 255))
-	a.set_rgb(71, randint(0, 255), randint(0, 255), randint(0, 255))
-	a.set_rgb(81, randint(0, 255), randint(0, 255), randint(0, 255))
-	a.set_rgb(91, randint(0, 255), randint(0, 255), randint(0, 255))
+	global a
+	for ad in dmx_adresses:
+		a.set_rgb(ad, randint(0, 255), randint(0, 255), randint(0, 255))
 	return "OK"
 
 
 @route('/lightblackout')
 def blackout():
 	"""Set all lights off."""
+	global a
 	a.blackout()
 	return "OK"
 
@@ -78,7 +65,8 @@ def blackout():
 @route('/lightsingle/<address>/<r>/<g>/<b>')
 def lightsingle(address, r, g, b):
 	"""Set given RGB values to light."""
-	address = int(address)  # 1 - 11 - 21 - 31- 41 - 51 - 61 - 71 - 81 - 91
+	global a
+	address = int(address)  # 1 - 4 - 7 - 10 - 13 - 16 - 19 - 22 - 25 - 28
 
 	# SET THE ARTNET BUFFER TO OUR DATA ...
 	a.set_rgb(address, r, g, b)
@@ -92,9 +80,11 @@ def video():
 	return "OK"
 
 
+dmx_adresses = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28]
+
 # VALUES SET FOR THE ADRESSAPARKEN FIXED INSTALL
 target_ip = '192.168.1.10'  # typically in 2.x or 10.x range
-packet_size = 100           # it is not necessary to send whole universe
+packet_size = 32           # it is not necessary to send whole universe
 universe = 0
 
 # CREATING A STUPID ARTNET OBJECT
