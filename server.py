@@ -80,11 +80,12 @@ def video():
 	return "OK"
 
 
+# Addresses for the LEDs as installed
 dmx_adresses = [1, 4, 7, 10, 13, 16, 19, 22, 25, 28]
 
 # VALUES SET FOR THE ADRESSAPARKEN FIXED INSTALL
-target_ip = '192.168.1.10'  # typically in 2.x or 10.x range
-packet_size = 32           # it is not necessary to send whole universe
+target_ip = '192.168.1.185'  # typically in 2.x or 10.x range
+packet_size = 32             # it is not necessary to send whole universe
 universe = 0
 
 # CREATING A STUPID ARTNET OBJECT
