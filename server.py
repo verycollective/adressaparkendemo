@@ -54,7 +54,7 @@ def allrandom():
 	return "OK"
 
 
-@route('/lightblackout')
+@route('/blackout')
 def blackout():
 	"""Set all lights off."""
 	global a

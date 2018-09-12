@@ -164,6 +164,7 @@
       <button onmousedown="httpGetAsync('lightall/0/0/40')">LED all blue</button>
       <button onmousedown="httpGetAsync('lightall/255/255/255')">LED all white</button>
       <button onmousedown="httpGetAsync('lightallrandom')">LED all random</button>
+      <button onmousedown="httpGetAsync('blackout')">Blackout</button>
     </div>
     <div id="sound" class="tabcontent">
         <button onmousedown="httpGetAsync('sound/3')">Speaker 1</button>
